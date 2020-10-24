@@ -1,0 +1,46 @@
+{
+  "compilerOptions": {
+    "target": "es2017",
+    "module": "commonjs",
+    "lib": ["es6"],
+    "allowJs": true,
+    "outDir": "./build",
+    "rootDir": ".",
+    "removeComments": true,
+    "typeRoots": [
+      "./node_modules/@types",
+      "./src/@types"
+    ],
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "strictFunctionTypes": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    "noUnusedLocals": true,
+    "noImplicitReturns": true,
+    "moduleResolution": "Node",
+    "noEmit": false,
+    "checkJs": true,
+    "sourceMap": true,
+    "incremental": false,
+    "baseUrl": ".",
+    "paths": {
+      "@root/*": ["./*"],
+      "@application/*": ["./src/application/*"],
+      "@business/*": ["./src/business/*"],
+      "@infrastructure/*": ["./src/infrastructure/*"],
+      "@database/*": ["./database/*"],
+      "@config": ["./config/index"]
+    }
+  },
+  "include": [
+    "./**/*"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
