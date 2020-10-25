@@ -1,7 +1,6 @@
 import { MailProvider } from '@business/shared/MailProvider';
 import { Creatable, FetchableByEmail } from '../UserRepository';
-import { CreateUserRequestDTO } from './CreateUserDTO';
-import User from '../../User';
+import User, { DataTransferObjectUser } from '../../User';
 
 export default class CreateUserUserCase {
   constructor(
@@ -10,7 +9,7 @@ export default class CreateUserUserCase {
     private readonly mailProvider: MailProvider,
   ) { }
 
-  async execute(data: CreateUserRequestDTO): Promise<void> {
+  async execute(data: DataTransferObjectUser): Promise<void> {
     const userAlreadyExists = await this.fetcher.fetchByEmail(data.email);
 
     if (userAlreadyExists) {

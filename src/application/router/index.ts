@@ -2,15 +2,12 @@ import { Router } from 'express';
 import fs from 'fs';
 
 const router = Router();
-interface LoadingRouter {
-  loadIn(router: Router): Router;
-}
 
-fs.readdirSync(__dirname).forEach((file) => {
+fs.readdirSync(__dirname).forEach(async (file): Promise<void> => {
   if (file !== 'index.ts') {
-    import(`./${file}`).then((route: LoadingRouter) => {
-      route.loadIn(router);
-    });
+    const routerFile = await import(`./${file}`);
+
+    routerFile.loadIn(router);
   }
 });
 

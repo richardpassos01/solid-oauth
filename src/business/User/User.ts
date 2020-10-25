@@ -1,5 +1,11 @@
 import { v4 as uuid } from 'uuid';
 
+export interface DataTransferObjectUser {
+  name: string;
+  email: string;
+  password?: string;
+}
+
 export default class User {
   public readonly id: string;
 
