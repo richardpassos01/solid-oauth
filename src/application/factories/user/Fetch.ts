@@ -1,17 +1,17 @@
-import FetchUserCase from '@root/src/business/User/use-cases/Fetch';
-import FetchController from '@root/src/application/controllers/user/FetchController';
+import Fetch from '@business/User/use-cases/Fetch';
+import FetchController from '@application/controllers/user/FetchController';
 
 import { userFetcher } from './Repository';
 
-const fetchUseCase = new FetchUserCase(
+const fetchUseCase = new Fetch(
   userFetcher(),
 );
 
-const fetchUserController = new FetchController(
+const fetchController = new FetchController(
   fetchUseCase,
 );
 
 export {
   fetchUseCase,
-  fetchUserController,
+  fetchController,
 };

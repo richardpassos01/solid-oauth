@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import FetchUseCase from '@business/User/use-cases/fetch/FetchUseCase';
+import FetchUseCase from '@business/User/use-cases/Fetch';
 
 export default class FetchController {
   constructor(

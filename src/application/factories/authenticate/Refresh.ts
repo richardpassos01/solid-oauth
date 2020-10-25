@@ -1,4 +1,4 @@
-import RefreshAuthenticateUserCase from '@root/src/business/Authenticate/use-cases/Refresh';
+import RefreshAuthenticateUserCase from '@business/Authenticate/use-cases/Refresh';
 import RefreshAuthenticateController from '@application/controllers/authenticate/RefreshController';
 import { createAuthenticateUseCase } from './Create';
 

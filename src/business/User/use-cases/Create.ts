@@ -1,14 +1,18 @@
-import { Creatable, FetchableByEmail } from '../Repository';
+import { Creatable, FetchableByIdentifiers } from '../Repository';
 import User, { DataTransferObjectUser, ID } from '../User';
 
 export default class Create {
   constructor(
-    private readonly fetcher: FetchableByEmail,
+    private readonly fetcherByIdentifiers: FetchableByIdentifiers,
     private readonly creator: Creatable,
   ) { }
 
   async execute(data: DataTransferObjectUser): Promise<ID> {
-    const userAlreadyExists = await this.fetcher.fetchByEmail(data.email);
+    const userAlreadyExists = await this.fetcherByIdentifiers.fetchByIdentifiers(
+      data.email,
+      data.username,
+      data.document,
+    );
 
     if (userAlreadyExists) {
       throw new Error('User already exists');

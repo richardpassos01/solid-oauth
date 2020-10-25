@@ -1,9 +1,9 @@
-import Create from '@root/src/business/User/use-cases/Create';
-import CreateController from '@root/src/application/controllers/user/CreateController';
-import { userFetcherByEmail, userCreator } from './Repository';
+import Create from '@business/User/use-cases/Create';
+import CreateController from '@application/controllers/user/CreateController';
+import { userFetcherByIdentifiers, userCreator } from './Repository';
 
 const createUseCase = new Create(
-  userFetcherByEmail(),
+  userFetcherByIdentifiers(),
   userCreator(),
 );
 

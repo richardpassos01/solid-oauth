@@ -12,7 +12,7 @@ export interface DataTransferObjectUser {
   name: string;
   email: string;
   username: string;
-  document: string;
+  document: number;
   password: UserPassword
 }
 
@@ -30,7 +30,7 @@ export default class User {
 
   public username: string;
 
-  public document: string;
+  public document: number;
 
   public salt: string;
 

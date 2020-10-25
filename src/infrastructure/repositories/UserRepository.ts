@@ -1,8 +1,8 @@
-import { Creatable, Fetchable, FetchableByEmail } from '@root/src/business/User/Repository';
+import { Creatable, Fetchable, FetchableByIdentifiers } from '@business/User/Repository';
 import User from '@business/User/User';
 import GenericDatabase from './GenericDatabase';
 
-export default class UserRepository implements Creatable, Fetchable, FetchableByEmail {
+export default class UserRepository implements Creatable, Fetchable, FetchableByIdentifiers {
   constructor(
     private queryBuilder: GenericDatabase<User>,
     private tableName: string,
@@ -34,6 +34,20 @@ export default class UserRepository implements Creatable, Fetchable, FetchableBy
     const users = await this.queryBuilder.select('*')
       .from(this.tableName)
       .where('id', id);
+
+    return users[0];
+  }
+
+  async fetchByIdentifiers(
+    email: string,
+    username: string,
+    document: number,
+  ): Promise<User> {
+    const users = await this.queryBuilder.select('*')
+      .from(this.tableName)
+      .where('email', email)
+      .orWhere('username', username)
+      .orWhere('document', document);
 
     return users[0];
   }

@@ -29,7 +29,6 @@
     "incremental": false,
     "baseUrl": ".",
     "paths": {
-      "@root/*": ["./*"],
       "@application/*": ["./src/application/*"],
       "@business/*": ["./src/business/*"],
       "@infrastructure/*": ["./src/infrastructure/*"],

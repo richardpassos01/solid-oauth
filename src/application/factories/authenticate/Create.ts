@@ -1,4 +1,4 @@
-import CreateAuthenticateUserCase from '@root/src/business/Authenticate/use-cases/Create';
+import CreateAuthenticateUserCase from '@business/Authenticate/use-cases/Create';
 import CreateAuthenticateController from '@application/controllers/authenticate/CreateController';
 
 const createAuthenticateUseCase = new CreateAuthenticateUserCase();

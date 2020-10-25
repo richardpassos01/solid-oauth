@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import UseCase from '@root/src/business/Authenticate/use-cases/Refresh';
+import UseCase from '@business/Authenticate/use-cases/Refresh';
 
 export default class RefreshController {
   constructor(
