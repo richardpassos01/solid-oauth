@@ -1,4 +1,6 @@
-import { GenericCreatable, GenericFetchableByEmail, GenericFetchable, GenericValidatable } from '../shared/Contracts';
+import {
+  GenericCreatable, GenericFetchableByEmail, GenericFetchable, GenericValidatable,
+} from '../shared/Contracts';
 import User, { UserIdentifier, UserPassword } from './User';
 
 export type Creatable = GenericCreatable<User>;

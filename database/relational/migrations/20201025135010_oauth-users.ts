@@ -20,7 +20,7 @@ export async function up(knex: Knex): Promise<void> {
         .notNullable();
 
       table
-        .decimal('document', 14, 2)
+        .decimal('document', 14, 0)
         .notNullable();
 
       table
