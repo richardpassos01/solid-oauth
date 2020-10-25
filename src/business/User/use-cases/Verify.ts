@@ -14,7 +14,7 @@ export default class Verify {
     const isValidPassword = verifyedUser.validPassword(password);
 
     if (!isValidPassword) {
-      throw new Error('Invalid password or identifier')
+      throw new Error('Invalid password or identifier');
     }
 
     return verifyedUser;
