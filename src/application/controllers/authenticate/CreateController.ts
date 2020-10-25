@@ -10,12 +10,12 @@ export default class CreateController {
 
   async handle(request: Request, response: Response): Promise<Response> {
     const {
-      authenticator,
+      identifier,
       password,
     } = request.body;
 
     try {
-      const user = await this.verifyUserUseCase.execute(authenticator, password);
+      const user = await this.verifyUserUseCase.execute(identifier, password);
 
       const token = await this.useCase.execute(user);
 

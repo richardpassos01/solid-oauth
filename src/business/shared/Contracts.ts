@@ -14,6 +14,10 @@ export interface GenericUpdatable<Entity> {
   update(entity: Entity): Promise<Entity>;
 }
 
+export interface GenericValidatable<Identifier, Password, Entity> {
+  valid(identifier: Identifier, password: Password): Promise<Entity>
+}
+
 export interface GenericUseCase<Param, Result> {
   execute(param: Param): Promise<Result>;
 }
