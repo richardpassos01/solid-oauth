@@ -1,10 +1,10 @@
 import express from 'express';
-import router from '@application/router';
+import registerRoutes from '@application/router';
 
 const app = express();
 
 app.use(express.json());
 
-app.use(router);
+registerRoutes(app);
 
 export default app;
