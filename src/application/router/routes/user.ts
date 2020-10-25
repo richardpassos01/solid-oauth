@@ -6,5 +6,5 @@ import { Router } from 'express';
 export default function userRoutes(router: Router): void {
   router.post('/users', (Request, Response) => createController.handle(Request, Response));
 
-  router.get('/user/:id', (Request, Response) => fetchController.handle(Request, Response));
+  router.get('/user', (Request, Response) => fetchController.handle(Request, Response));
 }

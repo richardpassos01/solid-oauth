@@ -1,5 +1,5 @@
 import { Creatable, Fetchable, FetchableByIdentifiers } from '@business/User/Repository';
-import User from '@business/User/User';
+import User, { UserIdentifier } from '@business/User/User';
 import GenericDatabase from './GenericDatabase';
 
 export default class UserRepository implements Creatable, Fetchable, FetchableByIdentifiers {
@@ -30,10 +30,10 @@ export default class UserRepository implements Creatable, Fetchable, FetchableBy
     });
   }
 
-  async fetch(id: string): Promise<User> {
+  async fetch(identifier: UserIdentifier): Promise<User> {
     const users = await this.queryBuilder.select('*')
       .from(this.tableName)
-      .where('id', id);
+      .where(identifier);
 
     return users[0];
   }

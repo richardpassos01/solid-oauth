@@ -8,13 +8,15 @@ export default class FetchController {
 
   async handle(request: Request, response: Response): Promise<Response> {
     const {
-      id,
-    } = request.params;
+      identifierValue,
+      identifierType,
+    } = request.query;
 
     try {
-      const user = await this.fetchUseCase.execute({
-        id: `${id}`,
-      });
+      const user = await this.fetchUseCase.execute(
+        identifierValue,
+        identifierType,
+      );
 
       return response.status(200).json(user);
     } catch (error) {

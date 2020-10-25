@@ -4,8 +4,10 @@ import crypto from 'crypto';
 export type UserPassword = string;
 
 export type UserIdentifier = {
-  type: number;
-  value: string;
+  id?: string;
+  username?: string;
+  email?: string;
+  document?: number;
 };
 
 export interface DataTransferObjectUser {
@@ -36,10 +38,10 @@ export default class User {
 
   public hash: string;
 
-  constructor(props: Omit<User, 'id' | 'hash' | 'salt' | 'setPassword' | 'validPassword'>, id?: ID) {
+  constructor(props: Omit<User, 'hash' | 'salt' | 'setPassword' | 'validPassword'>) {
     Object.assign(this, props);
 
-    if (!id) {
+    if (!props.id) {
       this.id = uuid();
     }
   }
@@ -50,8 +52,8 @@ export default class User {
   }
 
   public validPassword(password: UserPassword): boolean {
-    const validHash = crypto.pbkdf2Sync(password, this.salt, 1000, 64, 'sha512').toString('hex');
+    const hash = crypto.pbkdf2Sync(password, this.salt, 1000, 64, 'sha512').toString('hex');
 
-    return this.hash === validHash;
+    return this.hash === hash;
   }
 }

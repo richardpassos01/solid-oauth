@@ -1,7 +1,6 @@
 import {
   GenericCreatable,
   GenericFetchable,
-  GenericValidatable,
   GenericFetchableByIdentifiers,
 } from '../shared/Contracts';
 
@@ -11,6 +10,5 @@ export type Creatable = GenericCreatable<User>;
 
 export type FetchableByIdentifiers = GenericFetchableByIdentifiers<string, string, number, User>;
 
-export type Fetchable = GenericFetchable<string, User>;
+export type Fetchable = GenericFetchable<UserIdentifier, User>;
 
-export type Validatable = GenericValidatable<UserIdentifier, UserPassword, User>;

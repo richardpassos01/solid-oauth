@@ -13,10 +13,6 @@ export interface GenericFetchableByIdentifiers<Email, Username, Document, Entity
   fetchByIdentifiers(email: Email, username: Username, document: Document): Promise<Entity>
 }
 
-export interface GenericValidatable<Identifier, Password, Entity> {
-  valid(identifier: Identifier, password: Password): Promise<Entity>
-}
-
 export interface GenericUseCase<Param, Result> {
   execute(param: Param): Promise<Result>;
 }
