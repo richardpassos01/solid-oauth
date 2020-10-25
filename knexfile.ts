@@ -1,3 +1,3 @@
-import { config } from '@database/relational';
+import { config } from './database/relational';
 
 module.exports = config;

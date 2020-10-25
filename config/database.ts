@@ -6,7 +6,10 @@ const database = Object.freeze({
   relational: {
     connection: env.get('DATABASE_RELATIONAL_CONNECTION').required(required).asString(),
     tables: {
-      partners: 'users',
+      user: 'oauth_users',
+      identifier: 'oauth_identifiers',
+      roles: 'oauth_roles',
+      userRoles: 'oauth_user_roles',
     },
   },
 });

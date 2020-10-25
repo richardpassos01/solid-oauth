@@ -12,7 +12,6 @@ describe('#CreateUserController', () => {
   let json;
   let fetcher;
   let creator;
-  let mailProvider;
 
   beforeEach(() => {
     fetcher = {
@@ -22,11 +21,7 @@ describe('#CreateUserController', () => {
       create: jest.fn().mockResolvedValue(true),
     };
 
-    mailProvider = {
-      sendEmail: jest.fn(),
-    };
-
-    createUserUseCase = new CreateUserUserCase(fetcher, creator, mailProvider);
+    createUserUseCase = new CreateUserUserCase(fetcher, creator);
 
     mockRequest = {
       body: {

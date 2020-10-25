@@ -16,7 +16,7 @@
     "migration:create": "npm run knex migrate:make",
     "migration:up": "npm run knex migrate:latest",
     "migration:down": "npm run knex migrate:rollback",
-    "seed:create": "npx knex seed:make",
+    "seed:create": "npm run knex seed:make",
     "seed:run": "npm run knex seed:run"
   },
   "keywords": [],

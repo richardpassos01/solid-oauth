@@ -1,6 +1,6 @@
 import { Creatable, Fetchable, FetchableByEmail } from '@root/src/business/User/Repository';
 import User from '@business/User/User';
-import GenericDatabase from '../GenericDatabase';
+import GenericDatabase from './GenericDatabase';
 
 export default class UserRepository implements Creatable, Fetchable, FetchableByEmail {
   constructor(
@@ -16,12 +16,17 @@ export default class UserRepository implements Creatable, Fetchable, FetchableBy
     return users[0];
   }
 
-  async create(user: User): Promise<void> {
-    await this.queryBuilder(this.tableName).insert({
-      id: user.id,
-      name: user.name,
-      email: user.email,
-      password: user.password,
+  async create({
+    id, name, email, document, username, hash, salt,
+  }: User): Promise<void> {
+    return this.queryBuilder(this.tableName).insert({
+      id,
+      name,
+      email,
+      username,
+      document,
+      salt,
+      hash,
     });
   }
 

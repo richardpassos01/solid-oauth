@@ -16,12 +16,13 @@ export interface DataTransferObjectUser {
   password: UserPassword
 }
 
+export type ID = string;
 export interface UserId {
-  id: string;
+  id: ID;
 }
 
 export default class User {
-  public readonly id: UserId;
+  public readonly id: string;
 
   public name: string;
 
@@ -31,11 +32,11 @@ export default class User {
 
   public document: string;
 
-  public hash: string;
-
   public salt: string;
 
-  constructor(props: Omit<User, 'id' | 'hash' | 'salt' | 'setPassword' | 'validPassword'>, id?: UserId) {
+  public hash: string;
+
+  constructor(props: Omit<User, 'id' | 'hash' | 'salt' | 'setPassword' | 'validPassword'>, id?: ID) {
     Object.assign(this, props);
 
     if (!id) {
