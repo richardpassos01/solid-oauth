@@ -1,6 +1,6 @@
 import { MailProvider } from '@business/shared/MailProvider';
 import { Creatable, FetchableByEmail } from '../Repository';
-import User, { DataTransferObjectUser } from '../User';
+import User, { DataTransferObjectUser, UserId } from '../User';
 
 export default class Create {
   constructor(
@@ -9,30 +9,21 @@ export default class Create {
     private readonly mailProvider: MailProvider,
   ) { }
 
-  async execute(data: DataTransferObjectUser): Promise<User> {
+  async execute(data: DataTransferObjectUser): Promise<UserId> {
     const userAlreadyExists = await this.fetcher.fetchByEmail(data.email);
 
     if (userAlreadyExists) {
       throw new Error('User already exists');
     }
 
-    const user = new User(data);
+    const { password, ...userParams } = data;
+
+    const user = new User(userParams);
+
+    user.setPassword(password);
 
     await this.creator.create(user);
 
-    await this.mailProvider.sendEmail({
-      to: {
-        name: data.name,
-        email: data.email,
-      },
-      from: {
-        name: 'teste',
-        email: 'teste@teste.com',
-      },
-      body: '<p>You read this email</p>',
-      subject: 'Read this email',
-    });
-
-    return user;
+    return user.id;
   }
 }

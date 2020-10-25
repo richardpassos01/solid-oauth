@@ -10,6 +10,8 @@ export default class CreateController {
     const {
       name,
       email,
+      username,
+      document,
       password,
     } = request.body;
 
@@ -17,6 +19,8 @@ export default class CreateController {
       const user = await this.createUseCase.execute({
         name,
         email,
+        username,
+        document,
         password,
       });
 
