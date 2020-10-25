@@ -1,11 +1,17 @@
-import Router from 'express';
-import { createUserController } from '@application/factories/user/create';
-import { fetchUserController } from '@application/factories/user/fetch';
+import { Router } from 'express';
+import fs from 'fs';
 
 const router = Router();
+interface LoadingRouter {
+  loadIn(router: Router): Router;
+}
 
-router.post('/users', (Request, Response) => createUserController.handle(Request, Response));
-
-router.get('/user/:id', (Request, Response) => fetchUserController.handle(Request, Response));
+fs.readdirSync(__dirname).forEach((file) => {
+  if (file !== 'index.ts') {
+    import(`./${file}`).then((route: LoadingRouter) => {
+      route.loadIn(router);
+    });
+  }
+});
 
 export default router;

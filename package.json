@@ -12,9 +12,12 @@
     "test:functional": " node -r dotenv/config node_modules/.bin/jest test/functional --coverage --detectOpenHandles --forceExit --runInBand",
     "lint:fix": "npx eslint . --ext .ts --fix",
     "lint": "npx eslint . --ext .ts",
-    "db:migration:create": "npx knex migrate:make",
-    "db:migrate": "npx knex migrate:latest",
-    "db:rollback": "npx knex migrate:rollback"
+    "knex": "node -r dotenv/config ./node_modules/knex/bin/cli.js",
+    "migration:create": "npm run knex migrate:make",
+    "migration:up": "npm run knex migrate:latest",
+    "migration:down": "npm run knex migrate:rollback",
+    "seed:create": "npx knex seed:make",
+    "seed:run": "npm run knex seed:run"
   },
   "keywords": [],
   "author": "",
