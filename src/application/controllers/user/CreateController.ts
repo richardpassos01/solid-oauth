@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
-import CreateUserUserCase from '@business/User/use-cases/create/CreateUserUseCase';
+import CreateUserCase from '@root/src/business/User/use-cases/Create';
 
-export default class CreateUserController {
+export default class CreateController {
   constructor(
-    private createUserUseCase: CreateUserUserCase,
+    private createUseCase: CreateUserCase,
   ) { }
 
   async handle(request: Request, response: Response): Promise<Response> {
@@ -14,13 +14,13 @@ export default class CreateUserController {
     } = request.body;
 
     try {
-      await this.createUserUseCase.execute({
+      const user = await this.createUseCase.execute({
         name,
         email,
         password,
       });
 
-      return response.status(201).send();
+      return response.status(201).send(user);
     } catch (error) {
       return response.status(400).json({
         message: error.message || 'Unexpected Error',

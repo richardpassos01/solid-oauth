@@ -3,7 +3,11 @@ import { v4 as uuid } from 'uuid';
 export interface DataTransferObjectUser {
   name: string;
   email: string;
-  password?: string;
+  password: string;
+}
+
+export interface FetchDataTransferObjectUser {
+  id: string;
 }
 
 export default class User {

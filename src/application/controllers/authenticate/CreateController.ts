@@ -1,22 +1,23 @@
 import { Request, Response } from 'express';
-import UseCase from '@root/src/business/Authenticate/use-cases/Create';
+import UseCase from '@business/Authenticate/use-cases/Create';
+import VerifyUserUseCase from '@business/User/use-cases/Verify';
 
 export default class CreateController {
   constructor(
     private useCase: UseCase,
+    private verifyUserUseCase: VerifyUserUseCase,
   ) { }
 
   async handle(request: Request, response: Response): Promise<Response> {
     const {
-      name,
-      email,
+      authenticator,
+      password,
     } = request.body;
 
     try {
-      const token = await this.useCase.execute({
-        name,
-        email,
-      });
+      const user = await this.verifyUserUseCase.execute(authenticator, password);
+
+      const token = await this.useCase.execute(user);
 
       return response.status(201).send(token);
     } catch (error) {

@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
-import FetchUserUseCase from '@business/User/use-cases/fetch/FetchUserUseCase';
+import FetchUseCase from '@business/User/use-cases/fetch/FetchUseCase';
 
-export default class FetchUserController {
+export default class FetchController {
   constructor(
-    private fetchUserUseCase: FetchUserUseCase,
+    private fetchUseCase: FetchUseCase,
   ) { }
 
   async handle(request: Request, response: Response): Promise<Response> {
@@ -12,7 +12,7 @@ export default class FetchUserController {
     } = request.params;
 
     try {
-      const user = await this.fetchUserUseCase.execute({
+      const user = await this.fetchUseCase.execute({
         id: `${id}`,
       });
 

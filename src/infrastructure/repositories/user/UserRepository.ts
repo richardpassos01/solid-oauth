@@ -1,4 +1,4 @@
-import { Creatable, Fetchable, FetchableByEmail } from '@business/User/use-cases/UserRepository';
+import { Creatable, Fetchable, FetchableByEmail } from '@root/src/business/User/Repository';
 import User from '@business/User/User';
 import GenericDatabase from '../GenericDatabase';
 

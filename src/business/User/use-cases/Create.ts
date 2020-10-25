@@ -1,15 +1,15 @@
 import { MailProvider } from '@business/shared/MailProvider';
-import { Creatable, FetchableByEmail } from '../UserRepository';
-import User, { DataTransferObjectUser } from '../../User';
+import { Creatable, FetchableByEmail } from '../Repository';
+import User, { DataTransferObjectUser } from '../User';
 
-export default class CreateUserUserCase {
+export default class Create {
   constructor(
     private readonly fetcher: FetchableByEmail,
     private readonly creator: Creatable,
     private readonly mailProvider: MailProvider,
   ) { }
 
-  async execute(data: DataTransferObjectUser): Promise<void> {
+  async execute(data: DataTransferObjectUser): Promise<User> {
     const userAlreadyExists = await this.fetcher.fetchByEmail(data.email);
 
     if (userAlreadyExists) {
@@ -32,5 +32,7 @@ export default class CreateUserUserCase {
       body: '<p>You read this email</p>',
       subject: 'Read this email',
     });
+
+    return user;
   }
 }

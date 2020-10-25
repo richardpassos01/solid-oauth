@@ -1,8 +1,8 @@
 import { CREATED } from 'http-status-codes';
 import { Request, Response } from 'express';
 
-import CreateUserUserCase from '../../../../../../src/business/User/use-cases/create/CreateUserUseCase';
-import CreateUserController from '../../../../../../src/application/controllers/user/create/CreateUserController';
+import CreateUserUserCase from '../../../../../../src/business/User/use-cases/Create';
+import CreateUserController from '../../../../../../src/application/controllers/user/CreateController';
 
 describe('#CreateUserController', () => {
   let controller;
