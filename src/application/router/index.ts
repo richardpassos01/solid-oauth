@@ -1,14 +1,16 @@
-import { Router } from 'express';
-import fs from 'fs';
+import { Router, Express } from 'express';
+import authenticationRoutes from './routes/authentication';
+import healthCheckRoutes from './routes/healthCheck';
+import userRoutes from './routes/user';
 
-const router = Router();
+const registerRoutes = (server: Express): void => {
+  const router = Router();
 
-fs.readdirSync(__dirname).forEach(async (file): Promise<void> => {
-  if (file !== 'index.ts') {
-    const routerFile = await import(`./${file}`);
+  healthCheckRoutes(router);
+  authenticationRoutes(router);
+  userRoutes(router);
 
-    routerFile.loadIn(router);
-  }
-});
+  server.use(router);
+};
 
-export default router;
+export default registerRoutes;

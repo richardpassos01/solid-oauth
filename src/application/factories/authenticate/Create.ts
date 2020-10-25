@@ -8,5 +8,6 @@ const createAuthenticateController = new CreateAuthenticateController(
 );
 
 export {
+  createAuthenticateUseCase,
   createAuthenticateController,
 };

@@ -15,9 +15,9 @@ export default class Create {
     return {
       token_type: 'bearer',
       access_token: accessToken,
-      refresh_token_in: refreshToken,
-      token_expires_in: jwt.timeToExpireAccessToken,
-      refresh_token_expires: jwt.timeToExpireRefreshToken,
+      refresh_token: refreshToken,
+      access_token_expires_in: jwt.timeToExpireAccessToken,
+      refresh_token_expires_in: jwt.timeToExpireRefreshToken,
     };
   }
 }
