@@ -16,3 +16,5 @@ export type FetchableByIdentifiers = GenericFetchableByIdentifiers<string, strin
 export type Fetchable = GenericFetchable<UserIdentifier, User>;
 
 export type CreatableRole = GenericUseCase<DataTransferObjectUserRole, UserRole>;
+
+export type FetchbleRole = GenericUseCase<string, UserRole>;

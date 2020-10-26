@@ -5,7 +5,11 @@ import { Fetchable, Creatable, FetchableByUserAndRoleId } from '@business/UserRo
 
 const queryBuilder = connection();
 
-const repository = new UserRoleRepository(queryBuilder, database.relational.tables.userRoles);
+const repository = new UserRoleRepository(
+  queryBuilder,
+  database.relational.tables.userRoles,
+  database.relational.tables.roles,
+);
 
 export function userRoleFetcher(): Fetchable {
   return repository;

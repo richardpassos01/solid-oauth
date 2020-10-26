@@ -6,6 +6,7 @@ export default class UserRoleRepository implements Creatable, Fetchable, Fetchab
   constructor(
     private queryBuilder: GenericDatabase<UserRole>,
     private tableName: string,
+    private joinTableName: string,
   ) {}
 
   async create({
@@ -21,8 +22,9 @@ export default class UserRoleRepository implements Creatable, Fetchable, Fetchab
   }
 
   async fetch(userId: string): Promise<UserRole[]> {
-    return this.queryBuilder.select('*')
-      .from(this.tableName)
+    return this.queryBuilder(this.tableName)
+      .join(this.joinTableName, `${this.joinTableName}.id`, `${this.tableName}.role_id`)
+      .select('name', 'role_id')
       .where('user_id', userId);
   }
 
