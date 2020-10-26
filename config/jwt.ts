@@ -9,6 +9,11 @@ const jwt = Object.freeze({
     `${env.get('OAUTH_API_ACCESS_TOKEN_EXPIRES_IN_HOURS').required(required).asIntPositive()}h`,
   timeToExpireRefreshToken:
     `${env.get('OAUTH_API_REFRESH_TOKEN_EXPIRES_IN_HOURS').required(required).asIntPositive()}h`,
+  roles: {
+    user: 'user',
+    admin: 'admin',
+    superadmin: 'superadmin',
+  },
 });
 
 export default jwt;
