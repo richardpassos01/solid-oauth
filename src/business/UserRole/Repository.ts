@@ -4,10 +4,10 @@ import {
   GenericFetchableByIds,
 } from '../shared/Contracts';
 
-import UserRole from './UserRole';
+import UserRole, { DataTransferObjectFetcherUserRole } from './UserRole';
 
 export type Creatable = GenericCreatable<UserRole>;
 
-export type Fetchable = GenericFetchable<string, UserRole[]>;
+export type Fetchable = GenericFetchable<string, DataTransferObjectFetcherUserRole[]>;
 
 export type FetchableByUserAndRoleId = GenericFetchableByIds<string, string, UserRole>;

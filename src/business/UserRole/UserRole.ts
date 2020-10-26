@@ -1,5 +1,9 @@
 import { v4 as uuid } from 'uuid';
 
+export interface DataTransferObjectFetcherUserRole {
+  name: string;
+  role_id: string;
+}
 export interface DataTransferObjectUserRole {
   user_id: string;
   role_id?: string;

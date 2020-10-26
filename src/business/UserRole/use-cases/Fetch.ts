@@ -1,5 +1,5 @@
 import { Fetchable } from '../Repository';
-import UserRole from '../UserRole';
+import { DataTransferObjectFetcherUserRole } from '../UserRole';
 
 export default class Fetch {
   constructor(
@@ -8,7 +8,7 @@ export default class Fetch {
 
   async execute(
     userId: string,
-  ): Promise<UserRole[]> {
+  ): Promise<DataTransferObjectFetcherUserRole[]> {
     return this.fetcher.fetch(userId);
   }
 }

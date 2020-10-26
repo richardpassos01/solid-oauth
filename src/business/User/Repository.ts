@@ -5,8 +5,7 @@ import {
   GenericUseCase,
 } from '../shared/Contracts';
 
-import UserRole from '../UserRole/use-cases/Create';
-import { DataTransferObjectUserRole } from '../UserRole/UserRole';
+import UserRole, { DataTransferObjectUserRole, DataTransferObjectFetcherUserRole } from '../UserRole/UserRole';
 import User, { UserIdentifier } from './User';
 
 export type Creatable = GenericCreatable<User>;
@@ -17,4 +16,4 @@ export type Fetchable = GenericFetchable<UserIdentifier, User>;
 
 export type CreatableRole = GenericUseCase<DataTransferObjectUserRole, UserRole>;
 
-export type FetchbleRole = GenericUseCase<string, UserRole>;
+export type FetchableRole = GenericUseCase<string, DataTransferObjectFetcherUserRole[]>;

@@ -1,14 +1,14 @@
-import { Fetchable, FetchbleRole } from '../Repository';
+import { Fetchable, FetchableRole } from '../Repository';
 import User, { UserIdentifier, UserPassword } from '../User';
 
 export default class Verify {
   constructor(
     private readonly fetcher: Fetchable,
-    private readonly fetcherRole: FetchbleRole,
+    private readonly fetcherRole: FetchableRole,
 
   ) { }
 
-  async execute(identifier: UserIdentifier, password: UserPassword): Promise<User> {
+  async execute(identifier: UserIdentifier, password: UserPassword): Promise<any> {
     const verifyUser = await this.fetcher.fetch(identifier);
 
     const verifyedUser = new User(verifyUser, verifyUser.id);
@@ -21,6 +21,13 @@ export default class Verify {
 
     const userRoles = await this.fetcherRole.execute(verifyedUser.id);
 
-    return verifyedUser;
+    return {
+      id: verifyedUser.id,
+      name: verifyedUser.name,
+      email: verifyedUser.email,
+      username: verifyedUser.username,
+      document: verifyedUser.document,
+      roles: userRoles,
+    };
   }
 }
