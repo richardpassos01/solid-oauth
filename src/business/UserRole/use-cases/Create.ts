@@ -8,7 +8,8 @@ export default class Create {
   ) { }
 
   async execute(data: DataTransferObjectUserRole): Promise<any> {
-    const roleAlredyExists = await this.fetcherByIds.fetchByIds(data.user_id, data.role_id);
+    const roleAlredyExists = data.role_id
+      && await this.fetcherByIds.fetchByIds(data.user_id, data.role_id);
 
     if (roleAlredyExists) {
       throw new Error('Role already attributed to user');

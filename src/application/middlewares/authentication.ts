@@ -11,11 +11,11 @@ export default function authentication(
   request: Request,
   response: Response,
   next: NextFunction,
-): void {
+): any {
   const authHeader = request.headers.authorization;
 
   if (!authHeader) {
-    response.sendStatus(401);
+    return response.sendStatus(401);
   }
 
   const token = authHeader.split(' ')[1];
