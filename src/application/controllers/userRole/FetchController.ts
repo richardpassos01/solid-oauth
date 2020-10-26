@@ -9,7 +9,7 @@ export default class FetchController {
   async handle(request: Request, response: Response): Promise<Response> {
     const {
       userId,
-    } = request.query;
+    } = request.params;
 
     try {
       const userRoles = await this.useCase.execute(userId);

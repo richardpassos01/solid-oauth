@@ -9,7 +9,7 @@ export default class Verify {
   async execute(identifier: UserIdentifier, password: UserPassword): Promise<User> {
     const verifyUser = await this.fetcher.fetch(identifier);
 
-    const verifyedUser = new User(verifyUser);
+    const verifyedUser = new User(verifyUser, verifyUser.id);
 
     const isValidPassword = verifyedUser.validPassword(password);
 

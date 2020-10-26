@@ -4,7 +4,7 @@ export async function up(knex: Knex): Promise<void> {
   return knex.schema
     .createTableIfNotExists('oauth_roles', (table) => {
       table
-        .uuid('id')
+        .increments('id')
         .primary();
 
       table

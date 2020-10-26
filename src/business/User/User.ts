@@ -38,10 +38,10 @@ export default class User {
 
   public hash: string;
 
-  constructor(props: Omit<User, 'hash' | 'salt' | 'setPassword' | 'validPassword'>) {
+  constructor(props: Omit<User, 'id' | 'hash' | 'salt' | 'setPassword' | 'validPassword'>, id?: string) {
     Object.assign(this, props);
 
-    if (!props.id) {
+    if (!id) {
       this.id = uuid();
     }
   }

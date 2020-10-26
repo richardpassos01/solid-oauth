@@ -2,7 +2,7 @@ import { v4 as uuid } from 'uuid';
 
 export interface DataTransferObjectUserRole {
   user_id: string;
-  role_id: string;
+  role_id?: string;
 }
 
 export default class UserRole {
@@ -12,7 +12,7 @@ export default class UserRole {
 
   public role_id: string;
 
-  constructor(props: Omit<UserRole, 'id'>, id?: string) {
+  constructor(props: Omit<UserRole, 'id' | 'role_id'>, id?: string) {
     Object.assign(this, props);
 
     if (!id) {

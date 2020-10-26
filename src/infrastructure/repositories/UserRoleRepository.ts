@@ -1,8 +1,8 @@
-import { Creatable, Fetchable } from '@business/UserRole/Repository';
+import { Creatable, Fetchable, FetchableByUserAndRoleId } from '@business/UserRole/Repository';
 import UserRole from '@business/UserRole/UserRole';
 import GenericDatabase from './GenericDatabase';
 
-export default class UserRoleRepository implements Creatable, Fetchable {
+export default class UserRoleRepository implements Creatable, Fetchable, FetchableByUserAndRoleId {
   constructor(
     private queryBuilder: GenericDatabase<UserRole>,
     private tableName: string,
@@ -24,5 +24,14 @@ export default class UserRoleRepository implements Creatable, Fetchable {
     return this.queryBuilder.select('*')
       .from(this.tableName)
       .where('user_id', userId);
+  }
+
+  async fetchByIds(userId: string, roleId: string): Promise<UserRole> {
+    const role = await this.queryBuilder.select('*')
+      .from(this.tableName)
+      .where('user_id', userId)
+      .andWhere('role_id', roleId);
+
+    return role[0];
   }
 }

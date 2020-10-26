@@ -1,10 +1,11 @@
-import { Creatable, FetchableByIdentifiers } from '../Repository';
+import { Creatable, FetchableByIdentifiers, CreatableRole } from '../Repository';
 import User, { DataTransferObjectUser, ID } from '../User';
 
 export default class Create {
   constructor(
     private readonly fetcherByIdentifiers: FetchableByIdentifiers,
     private readonly creator: Creatable,
+    private readonly creatorRole: CreatableRole,
   ) { }
 
   async execute(data: DataTransferObjectUser): Promise<ID> {
@@ -25,6 +26,10 @@ export default class Create {
     user.setPassword(password);
 
     await this.creator.create(user);
+
+    await this.creatorRole.execute({
+      user_id: user.id,
+    });
 
     return user.id;
   }

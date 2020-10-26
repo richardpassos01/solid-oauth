@@ -13,6 +13,10 @@ export interface GenericFetchableByIdentifiers<Email, Username, Document, Entity
   fetchByIdentifiers(email: Email, username: Username, document: Document): Promise<Entity>
 }
 
+export interface GenericFetchableByIds<FirstID, SecondID, Entity> {
+  fetchByIds(firsId: FirstID, secondId: SecondID): Promise<Entity>
+}
+
 export interface GenericUseCase<Param, Result> {
   execute(param: Param): Promise<Result>;
 }

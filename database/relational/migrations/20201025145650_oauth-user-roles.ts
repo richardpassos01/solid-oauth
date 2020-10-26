@@ -14,9 +14,10 @@ export async function up(knex: Knex): Promise<void> {
         .notNullable();
 
       table
-        .uuid('role_id')
+        .integer('role_id')
         .references('oauth_roles.id')
         .onDelete('CASCADE')
+        .defaultTo(1)
         .notNullable();
 
       table.timestamps(true, true);
