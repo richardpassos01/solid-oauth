@@ -8,7 +8,7 @@ import {
 } from 'express';
 
 export default function authentication(
-  request: Request,
+  request: Request | any,
   response: Response,
   next: NextFunction,
 ): any {
@@ -20,7 +20,7 @@ export default function authentication(
 
   const token = authHeader.split(' ')[1];
 
-  jsonwebtoken.verify(token, jwt.accessTokenSecret, (err, user): any => {
+  return jsonwebtoken.verify(token, jwt.accessTokenSecret, (err, user): any => {
     if (err) {
       return response.sendStatus(403);
     }
