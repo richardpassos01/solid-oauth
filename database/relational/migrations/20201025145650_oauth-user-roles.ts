@@ -15,6 +15,7 @@ export async function up(knex: Knex): Promise<void> {
 
       table
         .integer('role_id')
+        .unsigned()
         .references('oauth_roles.id')
         .onDelete('CASCADE')
         .defaultTo(1)

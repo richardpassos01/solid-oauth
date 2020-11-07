@@ -3,7 +3,7 @@ import { database } from '../../config';
 import logger from '../../src/application/logger';
 
 export const config = {
-  client: 'pg',
+  client: 'mysql2',
   connection: database.relational.connection,
   migrations: {
     directory: `${__dirname}/migrations`,
